@@ -36,7 +36,17 @@
   text-align: right;
 }
 
+.content-summary{
+  width: auto;
+}
 
+.cover-image {
+  margin:5px 0 5px 0;
+  > img{
+    max-width: 150px;
+    border-radius: 4px;
+  }
+}
 
 .posts-info{
   
