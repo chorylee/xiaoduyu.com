@@ -1,10 +1,4 @@
-import graphql from '../../common/graphql';
-
-/*
-export function addAccessToken({ access_token, expires }) {
-  return { type: 'ADD_ACCESS_TOKEN', access_token, expires }
-}
-*/
+import graphql from '../utils/graphql';
 
 // 登录
 export function exchangeNewToken({ accessToken }: { accessToken: string }) {

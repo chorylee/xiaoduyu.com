@@ -1,13 +1,9 @@
-
-import graphql from '../../common/graphql';
+import graphql from '../utils/graphql';
 import loadList from '../utils/new-graphql-load-list';
-// import loadList from '../../common/graphql-load-list';
-
-// import { readSession } from '../session';
 
 import { dateDiff } from '../../common/date';
-
-// import loadList from '../../common/new-graphql-load-list';
+import { sendNotification } from './website';
+import { getUserInfo } from '../reducers/user';
 
 export const loadMessageList = loadList({
   reducerName: 'message',
@@ -104,6 +100,34 @@ export const addMessagesToList = ({ sessionId, messageId }: AddMessagesToList) =
         }
       })(dispatch, getState).then(([err, res]: any)=>{
         
+        let message = res.data[0];
+        const me = getUserInfo(getState());
+
+        if (me._id == message.addressee_id._id) {
+          
+          let body = message.content_html;
+
+          body = body.replace(/<[^>]+>/g, '');
+          body = body.replace(/\r\n/g, ''); 
+          body = body.replace(/\n/g, '');
+          
+          sendNotification({
+            content: message.user_id.nickname || '私信',
+            option: {
+              body,
+              icon: 'https:'+message.user_id.avatar_url,
+              image: 'https:'+message.user_id.avatar_url,
+              tag: 'message',
+              data: {
+                message
+              }
+            }
+          })(dispatch, getState);
+
+        }
+
+
+
         let list = getState().message[sessionId];
 
         if (list && list.data) {

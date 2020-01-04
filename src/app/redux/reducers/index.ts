@@ -17,7 +17,7 @@ import hasReadPosts from './has-read-posts';
 import message from './message';
 import session from './session';
 import clientInstalled from './client-installed';
-import ad from './ad';
+import live from './live';
 
 export default {
   scroll,
@@ -39,5 +39,5 @@ export default {
   message,
   session,
   clientInstalled,
-  ad
+  live
 }

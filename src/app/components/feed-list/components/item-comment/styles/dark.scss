@@ -1,0 +1,20 @@
+:global(#dark-theme) {
+
+  .item{
+    &:hover{
+      background-color: #212123;
+    }
+  }
+
+  .nickname{
+    color: #575b5f;
+  }
+
+  .posts-item{
+    background-color: #232326;
+    &:hover{
+      background-color: #302f36;
+    }
+  }
+  
+}

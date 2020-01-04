@@ -15,7 +15,7 @@ let config = {
   name: '小度鱼',
 
   // [必填] 网站描述
-  description: '年轻人的交流社区',
+  description: '小度鱼是一个年轻人的交流社区，我们交流分享想法、发现生活乐趣、探索有趣好玩的事情！',
 
   // [选填] 联系我们的邮箱地址
   contactEmail: 'hi@abcd.com',
@@ -32,8 +32,8 @@ let config = {
   // [必填] https://github.com/css-modules/css-modules
   classScopedName: '[hash:base64:5]',
   
-  // [必填] 客户端打包后(dist/client/*)静态资源的前缀域名
-  publicPath: '//localhost:4000',
+  // [选填] 客户端打包后(dist/client/*)静态资源的前缀域名
+  publicPath: '',
 
   api: {
     // [必填] 域名，第三方登录的时候，跳转使用
@@ -63,14 +63,14 @@ let config = {
   
   // 社交账号登陆，需api支持
   social: {
-    weibo: true,
+    weibo: false,
     qq: true,
-    github: true,
+    github: false,
     wechat: false
   },
   
   // [选填] 图片文件在public/512x512.png
-  favicon: '<link rel="icon" href="/512x512.png" type="image/png" />',
+  favicon: '<link rel="icon" href="/favicon.png" type="image/png" />',
 
   // [选填] 添加内容到模版的head中
   head: `
@@ -83,12 +83,15 @@ let config = {
   // [选填] 添加分析统计脚本
   analysisScript: ``,
 
+  // [必填] 
   qiniu: {
     // 七牛上传地址
     uploadUrl: {
       http: 'http://upload.qiniu.com',
       https: 'https://up.qbox.me/'
-    }
+    },
+    // cdn 域名
+    domain: ''
   },
   
   // [必填] AMP 页面相关配置
@@ -99,6 +102,11 @@ let config = {
       width: 600,
       height: 60
     }
+  },
+  
+  // 直播功能，暂时关闭，请勿打开
+  agora: {
+    appid: ''
   }
 
 }

@@ -1,5 +1,5 @@
 import { dateDiff } from '../../common/date';
-import graphql from '../../common/graphql';
+import graphql from '../utils/graphql';
 import loadList from '../utils/new-graphql-load-list';
 
 import Device from '../../common/device';
@@ -57,6 +57,29 @@ const processCommentList = (list: Array<object>) => {
     if (item.posts_id && item.posts_id.content_html) {
 
       let textContent = item.posts_id.content_html;
+
+      
+
+      // let preReg = /<pre>(.*?)<\/pre>/g;
+
+      
+      // console.log(textContent.replace(/<pre>(.*?)<\/pre>/gi, ""))
+
+      // let pres = [];
+      // let pre;
+      // while (pre = preReg.exec(textContent)) {
+      //   console.log('pre');
+      //   pres.push(pre[0]);
+      // }
+
+
+      // pres.map(item=>{
+      //   textContent = textContent.replace(item, '[代码]');
+      // });
+
+      // textContent = textContent.replace(/<pre>(.*?)<\/pre>/gi, '[代码]');
+
+      // console.log(textContent);
 
       textContent = textContent.replace(/<[^>]+>/g, '');
       textContent = textContent.replace(/\r\n/g, ''); 
@@ -321,5 +344,19 @@ export function updateComment(filters: any) {
     resolve([null])
 
   })
+  }
+}
+
+export const removeCommnetListById = function({ id }: { id: string }) {
+  return (dispatch: any, getState: any) => {
+    return new Promise(async (resolve) => {
+      let comentState = getState().comment;
+
+      if (comentState[id]) {
+        delete comentState[id];
+      }
+
+      dispatch({ type: 'SET_COMMENT', state: comentState })
+    })
   }
 }
